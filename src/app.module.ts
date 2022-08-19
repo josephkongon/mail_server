@@ -4,14 +4,14 @@ import { UsersModule } from './users/users.module';
 import { MessagesModule } from './messages/messages.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     UsersModule,
     MessagesModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://josephkongon:Nyx52498659@cluster0.6ks1s.mongodb.net/messageDatabase?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.DATABASE),
     AuthModule,
   ],
   controllers: [],
